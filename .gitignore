@@ -1,3 +1,4 @@
 app/*
 !app/index.html
 node_modules/
+*.log

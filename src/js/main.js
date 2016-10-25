@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { Article, DinamicHelloWorld } from "./lesson1/01-components-props-state.js";
+import { Article, DinamicHelloWorld, ContactsList } from "./lesson1/01-components-props-state";
 
 require("../sass/main.sass");
 
@@ -16,6 +16,11 @@ ReactDOM.render(
 		<hr />
 		<div className="container">
 			<DinamicHelloWorld />
+		</div>
+		<hr />
+		<div className="container contacts-list">
+			<h1>Лист контактов</h1>
+			<ContactsList />
 		</div>
 	</section>,
 	document.body.querySelector(".content")
