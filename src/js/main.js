@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { Article, DinamicHelloWorld, ContactsList } from "./lesson1/01-components-props-state";
+import { Article, DinamicHelloWorld } from "./lesson1/01-components-props-state";
+import { ContactsList } from "./lesson1/contacts-list";
 
 require("../sass/main.sass");
 
