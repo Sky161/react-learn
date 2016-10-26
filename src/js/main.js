@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 
 import { Article, DinamicHelloWorld } from "./lesson1/01-components-props-state";
 import { ContactsList } from "./lesson1/contacts-list";
+import { Calc } from "./lesson1/calc";
 
 require("../sass/main.sass");
 
@@ -22,6 +23,11 @@ ReactDOM.render(
 		<div className="container contacts-list">
 			<h1>Лист контактов</h1>
 			<ContactsList />
+		</div>
+		<hr />
+		<div className="container">
+			<h1>Калькулятор</h1>
+			<Calc />
 		</div>
 	</section>,
 	document.body.querySelector(".content")

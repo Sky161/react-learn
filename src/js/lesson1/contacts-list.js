@@ -45,13 +45,13 @@ class ContactItem extends React.Component {
 	}
 
 	render() {
+		let renderDopInfo = "";
+
 		if(this.state.showDopInfo) {
-			this.renderDopInfo = <div>
+			renderDopInfo = <div>
 				<p>Местоположение - {this.props.location}</p>
 				<p>Возраст - {this.props.age}</p>
 			</div>;
-		} else {
-			this.renderDopInfo = "";
 		}
 
 		return (
@@ -60,7 +60,7 @@ class ContactItem extends React.Component {
 				<section>
 					<p>Имя - {this.props.name}</p>
 					<p>Телефон - {this.props.phoneNumber}</p>
-					{this.renderDopInfo}
+					{renderDopInfo}
 				</section>
 			</li>
 		);
