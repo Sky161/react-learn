@@ -24,7 +24,13 @@ module.exports = {
 				test: /\.sass$/,
 				loaders: ["style", "css?sourceMap", "sass?sourceMap"]
 			},
-
+			{
+				test: /\.(eot|woff|woff2|ttf|svg|png|jpg)$/,
+				loader: 'file',
+				query: {
+					name: "[path][name]-[hash:7].[ext]"
+				}
+			}
 		]
 	},
 
