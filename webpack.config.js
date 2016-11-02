@@ -6,6 +6,7 @@ module.exports = {
 	context: __dirname,
 	entry: "./src/js/main.js",
 	output: {
+		publicPath: "/",
 		path: "./app",
 		filename: "bundle.js",
 	},
@@ -22,13 +23,13 @@ module.exports = {
 			},
 			{
 				test: /\.sass$/,
-				loaders: ["style", "css?sourceMap", "sass?sourceMap"]
+				loaders: ["style", "css", "resolve-url", "sass?sourceMap"]
 			},
 			{
 				test: /\.(eot|woff|woff2|ttf|svg|png|jpg)$/,
 				loader: 'file',
 				query: {
-					name: "[path][name]-[hash:7].[ext]"
+					name: "[path][name].[ext]"
 				}
 			}
 		]

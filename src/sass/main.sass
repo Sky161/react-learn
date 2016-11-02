@@ -1,9 +1,29 @@
-$bootstrap-sass-asset-helper: "../../node_modules/bootstrap-sass/assets/stylesheets/"
+$bootstrap-sass-asset-helper: "~bootstrap-sass/assets/stylesheets/"
 
+// Core variables and mixins
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables"
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/mixins"
+
+// Reset and dependencies
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/normalize"
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/theme"
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/print"
+
+// Core CSS
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/scaffolding"
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/grid"
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/tables"
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/forms"
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/buttons"
+
+// Components
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/button-groups"
 @import "~bootstrap-sass/assets/stylesheets/bootstrap/input-groups"
+@import "~bootstrap-sass/assets/stylesheets/bootstrap/list-group"
+
+
+html
+	body
+	.col-vcenter
+		display: inline-block
+		vertical-align: middle
+		float: none
