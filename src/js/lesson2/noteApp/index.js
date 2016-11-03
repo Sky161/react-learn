@@ -43,13 +43,19 @@ export class NoteApp extends React.Component {
 		}
 	}
 
+	handelAddNote(newNote) {
+		let copyNote = this.state.note.slice();
+		copyNote.unshift(newNote);
+		this.setState({note: copyNote});
+	}
+
 	render() {
 		return(
 			<section className="note-app">
 				<div className="page-header container-fluid">
 					<h1>Список заметок</h1>
 				</div>
-				<NoteAdd />
+				<NoteAdd onNoteAdd={this.handelAddNote.bind(this)}/>
 				<NoteList note={ this.state.note }/>
 			</section>
 		);

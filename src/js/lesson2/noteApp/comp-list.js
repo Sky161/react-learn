@@ -8,7 +8,6 @@ export default class NoteList extends React.Component{
 	}
 
 	componentDidMount() {
-		console.log(this.refs);
 		const list = this.refs.list;
 		this.msnry = new Masonry(list, {
 			itemSelector: '.note',
@@ -16,6 +15,13 @@ export default class NoteList extends React.Component{
 			gutter: 10,
 			isFitWidth: true
 		});
+	}
+
+	componentDidUpdate(prevProps) {
+		if(prevProps.length != this.props.note.length) {
+			this.msnry.reloadItems();
+			this.msnry.layout();
+		}
 	}
 
 	render() {
