@@ -1,34 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
-import { Article, DinamicHelloWorld } from "./lesson1/01-components-props-state";
-import { ContactsList } from "./lesson1/contacts-list";
-import { Calc } from "./lesson1/calc";
-
 require("../sass/main.sass");
 
+import { NoteApp } from "./lesson2/noteApp/index";
+
 ReactDOM.render(
-	<section>
-		<div className="container">
-			<h1>Статьи</h1>
-			<Article title="Это заголовок статьи1" author="Андрей Чечкин" text="текст"/>
-			<Article title="Это заголовок статьи2" author="Денис" text="текст2"/>
-			<Article title="Это заголовок статьи3" author="Ваня" text="текст3"/>
-		</div>
-		<hr />
-		<div className="container">
-			<DinamicHelloWorld />
-		</div>
-		<hr />
-		<div className="container contacts-list">
-			<h1>Лист контактов</h1>
-			<ContactsList />
-		</div>
-		<hr />
-		<div className="container">
-			<h1>Калькулятор</h1>
-			<Calc />
-		</div>
-	</section>,
+	<NoteApp />,
 	document.body.querySelector(".content")
 );
