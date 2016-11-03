@@ -1,6 +1,6 @@
 "use strict";
 const webpack = require("webpack");
-const path = require("path");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
 	context: __dirname,
@@ -23,7 +23,7 @@ module.exports = {
 			},
 			{
 				test: /\.sass$/,
-				loaders: ["style", "css", "resolve-url", "sass?sourceMap"]
+				loader: ExtractTextPlugin.extract(["css", "resolve-url", "sass?sourceMap"])
 			},
 			{
 				test: /\.(eot|woff|woff2|ttf|svg|png|jpg)$/,
@@ -34,6 +34,10 @@ module.exports = {
 			}
 		]
 	},
+
+	plugins: [
+		new ExtractTextPlugin("build.css")
+	],
 
 	devServer: {
 		contentBase: "./app",
