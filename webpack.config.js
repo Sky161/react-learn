@@ -4,6 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
 	context: __dirname,
+	devtool: "sorce-map",
 	entry: "./src/js/main.js",
 	output: {
 		publicPath: "/",
@@ -44,7 +45,5 @@ module.exports = {
 		inline: true,
 		host: "localhost",
 		port: 3002
-	},
-
-	devtool: "sorce-map"
+	}
 }

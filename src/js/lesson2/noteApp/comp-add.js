@@ -16,7 +16,8 @@ export default class NoteAdd extends React.Component {
 		e.preventDefault();
 		const newNote = {
 			text: this.state.text,
-			color: 'yellow'
+			color: 'yellow',
+			id: Date.now()
 		}
 
 		this.props.onNoteAdd(newNote);
