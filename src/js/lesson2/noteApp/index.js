@@ -33,7 +33,6 @@ export class NoteApp extends React.Component {
 				return item;
 			}
 		});
-
 		this.setState({note: res});
 	}
 

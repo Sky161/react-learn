@@ -29,7 +29,7 @@ export default class NoteList extends React.Component{
 			<div className="list container-fluid" ref="list">
 				{
 					this.props.note.map((item, key) =>
-						<Note key={key} color={item.color}>
+						<Note key={key} color={item.color} id={item.id} deleteNote={this.props.onDeleteNote}>
 							{ item.text }
 						</Note>
 					)

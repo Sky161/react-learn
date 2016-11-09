@@ -4,24 +4,28 @@ export default class NoteAdd extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			text: ""
+			text: "",
+			color: "#ffff00"
 		}
 	}
 
-	handleChangeText(e) {
-		this.setState({text: e.target.value});
+	inputChange(stateKey, e) {
+		this.setState({[stateKey]: e.target.value});
 	}
 
 	handleClickAdd(e) {
 		e.preventDefault();
 		const newNote = {
 			text: this.state.text,
-			color: 'yellow',
+			color: this.state.color,
 			id: Date.now()
 		}
 
 		this.props.onNoteAdd(newNote);
-		this.setState({text: ""});
+		this.setState({
+			text: "",
+			color: "#ffff00"
+		});
 	}
 
 	render() {
@@ -32,8 +36,13 @@ export default class NoteAdd extends React.Component {
 						placeholder="Введите текст заметки..."
 						className="form-control"
 						value={this.state.text}
-						onChange={this.handleChangeText.bind(this)}
+						onChange={this.inputChange.bind(this, "text")}
 					/>
+				</div>
+				<div className="form-group">
+					<input type="color"
+						value={this.state.color}
+						onChange={this.inputChange.bind(this, "color")}/>
 				</div>
 				<input
 					type="submit"
