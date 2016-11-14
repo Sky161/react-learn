@@ -5,11 +5,14 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
 	context: __dirname,
 	devtool: "sorce-map",
-	entry: "./src/js/main.js",
+	entry: {
+		app: "./src/js/main.js",
+		vendor: ["react", 'react-dom', 'masonry-layout']
+	},
 	output: {
 		publicPath: "/",
 		path: "./app",
-		filename: "bundle.js",
+		filename: "[name].bundle.js",
 	},
 
 	module: {
@@ -37,7 +40,11 @@ module.exports = {
 	},
 
 	plugins: [
-		new ExtractTextPlugin("build.css")
+		new ExtractTextPlugin("build.css"),
+		new webpack.optimize.CommonsChunkPlugin({
+			names: ["app", "vendor"],
+			minChunks: Infinity
+		})
 	],
 
 	devServer: {
