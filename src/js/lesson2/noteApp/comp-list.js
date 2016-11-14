@@ -1,6 +1,7 @@
 import React from "react";
 import Masonry from "masonry-layout";
 import Note from "./comp-detail";
+import SearchNote from "./comp-search.js";
 
 export default class NoteList extends React.Component{
 	constructor(props) {
@@ -26,15 +27,20 @@ export default class NoteList extends React.Component{
 
 	render() {
 		return(
-			<div className="list container-fluid" ref="list">
-				{
-					this.props.note.map((item, key) =>
-						<Note key={key} color={item.color} id={item.id} deleteNote={this.props.onDeleteNote}>
-							{ item.text }
-						</Note>
-					)
-				}
-			</div>
+			<section className="search-section">
+				<div className="container">
+					<SearchNote searchHandlerParent={this.props.onSearchNote}/>
+				</div>
+				<div className="list container-fluid" ref="list">
+					{
+						this.props.note.map((item, key) =>
+							<Note key={key} color={item.color} id={item.id} deleteNote={this.props.onDeleteNote}>
+								{ item.text }
+							</Note>
+						)
+					}
+				</div>
+			</section>
 		);
 	}
 }

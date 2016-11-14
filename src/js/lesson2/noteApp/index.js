@@ -1,6 +1,7 @@
 import React from "react";
 import NoteAdd from "./comp-add";
 import NoteList from "./comp-list";
+import styles from "../../../sass/lesson2/note.sass";
 
 export class NoteApp extends React.Component {
 	constructor(props) {
@@ -11,13 +12,13 @@ export class NoteApp extends React.Component {
 	}
 
 	componentDidMount() {
-		const localNotes = JSON.parse(localStorage.getItem("notes"));
-		if(localNotes) {
-			this.setState({"note": localNotes});
+		this.localNotes = JSON.parse(localStorage.getItem("notes"));
+		if(this.localNotes) {
+			this.setState({"note": this.localNotes});
 		}
 	}
 
-	componentDidUpdate() {
+	writeLocalStorage() {
 		localStorage.setItem("notes", JSON.stringify(this.state.note))
 	}
 
@@ -25,6 +26,7 @@ export class NoteApp extends React.Component {
 		let copyNote = this.state.note.slice();
 		copyNote.unshift(newNote);
 		this.setState({note: copyNote});
+		this.writeLocalStorage();
 	}
 
 	handleDeleteNote(note) {
@@ -33,6 +35,19 @@ export class NoteApp extends React.Component {
 				return item;
 			}
 		});
+		this.setState({note: res});
+		this.writeLocalStorage();
+	}
+
+	handleSearchNote(q) {
+		const query = q.target.value.toLowerCase();
+		const res = this.localNotes.filter(item => {
+			const text = item.text.toLowerCase();
+			if(text.indexOf(query) != -1) {
+				return item;
+			}
+		});
+
 		this.setState({note: res});
 	}
 
@@ -44,7 +59,10 @@ export class NoteApp extends React.Component {
 					<h1>Список заметок</h1>
 				</div>
 				<NoteAdd onNoteAdd={this.handelAddNote.bind(this)}/>
-				<NoteList note={this.state.note} onDeleteNote={this.handleDeleteNote.bind(this)}/>
+				<NoteList
+					note={this.state.note}
+					onDeleteNote={this.handleDeleteNote.bind(this)}
+					onSearchNote={this.handleSearchNote.bind(this)}/>
 			</section>
 		);
 	}
