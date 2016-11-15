@@ -8,14 +8,6 @@ export default class ItemTodo extends React.Component{
 		};
 	}
 
-	handleClickDelete() {
-		this.props.onDeleteTodoItem(this);
-	}
-
-	handleChangeComplete() {
-		this.props.onCompleteTodoItem(this);
-	}
-
 	render() {
 		return(
 			<div className="row">
@@ -24,7 +16,7 @@ export default class ItemTodo extends React.Component{
 						<input id={`someSwitchOptionSuccess${this.props.item.id}`}
 							type="checkbox"
 							checked={this.props.item.complete}
-							onChange={this.handleChangeComplete.bind(this)}/>
+							onChange={this.props.onCompleteTodoItem.bind(null, this.props.item.id)}/>
 						<label htmlFor={`someSwitchOptionSuccess${this.props.item.id}`} className="label-success"></label>
 					</div>
 				</div>
@@ -33,7 +25,7 @@ export default class ItemTodo extends React.Component{
 				</div>
 				<div className="col-xs-1">
 					<button className="btn btn-danger"
-						onClick={this.handleClickDelete.bind(this)}>
+						onClick={this.props.onDeleteTodoItem.bind(null, this.props.item.id)}>
 						<span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					</button>
 				</div>

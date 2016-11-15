@@ -5,17 +5,13 @@ export default class Note extends React.Component {
 		super(props);
 	}
 
-	handleClickDelete() {
-		this.props.deleteNote(this);
-	}
-
 	render() {
 		const styleNote = {
 			background: this.props.color
 		};
 		return(
 			<div className="note" style={styleNote}>
-				<button type="button" className="close" onClick={this.handleClickDelete.bind(this)}>&times;</button>
+				<button type="button" className="close" onClick={this.props.deleteNote.bind(null, this.props.id)}>&times;</button>
 				{ this.props.children }
 			</div>
 		);

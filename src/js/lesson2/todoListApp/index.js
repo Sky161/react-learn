@@ -43,8 +43,7 @@ export default class TodoApp extends React.Component {
 		this.setState({todoList: todoList});
 	}
 
-	deleteTodo(todo) {
-		const id = todo.props.item.id;
+	deleteTodo(id) {
 		const res = this.state.todoList.filter(item => {
 			if(item.id !== id) {
 				return item;
@@ -53,12 +52,11 @@ export default class TodoApp extends React.Component {
 		this.setState({todoList: res});
 	}
 
-	completeTodo(todo) {
-		const item = todo.props.item;
+	completeTodo(id) {
 		const res = this.state.todoList.slice();
 		const index = res.findIndex(element => {
-			if(element.id == item.id) {
-				return item;
+			if(element.id == id) {
+				return element;
 			}
 		});
 		res[index].complete = !res[index].complete;

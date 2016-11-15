@@ -20,7 +20,6 @@ export class NoteApp extends React.Component {
 
 	writeLocalStorage(arr) {
 		localStorage.setItem("notes", JSON.stringify(arr));
-		console.log(localStorage);
 	}
 
 	handelAddNote(newNote) {
@@ -30,9 +29,9 @@ export class NoteApp extends React.Component {
 		this.writeLocalStorage(copyNote);
 	}
 
-	handleDeleteNote(note) {
+	handleDeleteNote(id) {
 		const res = this.state.note.filter(item => {
-			if(item.id !== note.props.id) {
+			if(item.id !== id) {
 				return item;
 			}
 		});
