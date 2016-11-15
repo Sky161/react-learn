@@ -18,15 +18,16 @@ export class NoteApp extends React.Component {
 		}
 	}
 
-	writeLocalStorage() {
-		localStorage.setItem("notes", JSON.stringify(this.state.note))
+	writeLocalStorage(arr) {
+		localStorage.setItem("notes", JSON.stringify(arr));
+		console.log(localStorage);
 	}
 
 	handelAddNote(newNote) {
 		let copyNote = this.state.note.slice();
 		copyNote.unshift(newNote);
 		this.setState({note: copyNote});
-		this.writeLocalStorage();
+		this.writeLocalStorage(copyNote);
 	}
 
 	handleDeleteNote(note) {
@@ -36,7 +37,7 @@ export class NoteApp extends React.Component {
 			}
 		});
 		this.setState({note: res});
-		this.writeLocalStorage();
+		this.writeLocalStorage(res);
 	}
 
 	handleSearchNote(q) {
