@@ -1,10 +1,40 @@
 import React from "react";
 import AddTodo from "./comp-add";
 import ListTodo from "./comp-list";
+import styles from "../../../sass/lesson2/todo.sass";
 
 export default class TodoApp extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			"todoList": [
+				{
+					id: "0",
+					text: "Тех Увы лун лия Бел Пой. Яркий Вот дым уст Лию дуб Рек живее Уже ему врозь.",
+					complete: false
+				},
+				{
+					id: "1",
+					text: "Тех Увы лун лия Бел Пой. Яркий Вот дым уст Лию дуб Рек живее Уже ему врозь.",
+					complete: false
+				},
+				{
+					id: "2",
+					text: "Тех Увы лун лия Бел Пой. Яркий Вот дым уст Лию дуб Рек живее Уже ему врозь.",
+					complete: false
+				},
+				{
+					id: "3",
+					text: "Тех Увы лун лия Бел Пой. Яркий Вот дым уст Лию дуб Рек живее Уже ему врозь.",
+					complete: false
+				},
+				{
+					id: "4",
+					text: "Тех Увы лун лия Бел Пой. Яркий Вот дым уст Лию дуб Рек живее Уже ему врозь.",
+					complete: false
+				}
+			]
+		}
 	}
 
 	render() {
@@ -14,7 +44,7 @@ export default class TodoApp extends React.Component {
 					<h1>To Do лист</h1>
 				</div>
 				<AddTodo />
-				<ListTodo />
+				<ListTodo list={this.state.todoList}/>
 			</section>
 		);
 	}

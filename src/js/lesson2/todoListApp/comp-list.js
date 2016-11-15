@@ -8,9 +8,12 @@ export default class ListTodo extends React.Component {
 
 	render() {
 		return(
-			<div>
-				<p>TodoList</p>
-				<ItemTodo />
+			<div className="container">
+				{
+					this.props.list.map(item => {
+						return <ItemTodo key={item.id} item={item}/>
+					})
+				}
 			</div>
 		);
 	}
