@@ -5,6 +5,10 @@ export default class ItemTodo extends React.Component{
 		super(props);
 	}
 
+	handleClickDelete() {
+		this.props.onDeleteTodoItem(this);
+	}
+
 	render() {
 		return(
 			<div className="row">
@@ -16,7 +20,8 @@ export default class ItemTodo extends React.Component{
 				</div>
 				<div className="col-xs-10">{this.props.item.text}</div>
 				<div className="col-xs-1">
-					<button className="btn btn-danger">
+					<button className="btn btn-danger"
+						onClick={this.handleClickDelete.bind(this)}>
 						<span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					</button>
 				</div>

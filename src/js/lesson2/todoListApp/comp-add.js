@@ -21,7 +21,7 @@ export default class AddTodo extends React.Component {
 				text: this.state.text,
 				complete: false
 			};
-			this.props.onAddNote(res);
+			this.props.onAddTodo(res);
 			this.setState({text: "" });
 		}
 	}

@@ -37,10 +37,20 @@ export default class TodoApp extends React.Component {
 		}
 	}
 
-	addNote(note) {
+	addTodo(todo) {
 		const todoList = this.state.todoList.slice();
-		todoList.push(note);
+		todoList.push(todo);
 		this.setState({todoList: todoList});
+	}
+
+	deleteTodo(todo) {
+		const id = todo.props.item.id;
+		const res = this.state.todoList.filter(item => {
+			if(item.id !== id) {
+				return item;
+			}
+		});
+		this.setState({todoList: res});
 	}
 
 	render() {
@@ -49,8 +59,10 @@ export default class TodoApp extends React.Component {
 				<div className="page-header container-fluid">
 					<h1>To Do лист</h1>
 				</div>
-				<AddTodo onAddNote={this.addNote.bind(this)}/>
-				<ListTodo list={this.state.todoList}/>
+				<AddTodo onAddTodo={this.addTodo.bind(this)}/>
+				<ListTodo
+					list={this.state.todoList}
+					onDeleteTodo={this.deleteTodo.bind(this)}/>
 			</section>
 		);
 	}
