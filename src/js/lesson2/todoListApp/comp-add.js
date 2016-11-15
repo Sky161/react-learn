@@ -4,13 +4,26 @@ export default class AddTodo extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			"text": ""
+			text: ""
 		}
 	}
 
 	handleChangeText(e) {
 		const val = e.target.value;
-		this.setState({ "text": val });
+		this.setState({text: val});
+	}
+
+	handleClickAdd(e) {
+		e.preventDefault();
+		if(this.state.text.length > 0) {
+			const res = {
+				id: Date.now(),
+				text: this.state.text,
+				complete: false
+			};
+			this.props.onAddNote(res);
+			this.setState({text: "" });
+		}
 	}
 
 	render() {
@@ -21,10 +34,13 @@ export default class AddTodo extends React.Component {
 					<input type="text"
 						className="form-control"
 						value={this.state.text}
-						onChange={this.handleChangeText} />
+						onChange={this.handleChangeText.bind(this)} />
 				</div>
 				<div className="form-group">
-					<input type="submit" className="btn btn-success" value="Добавить" />
+					<input type="submit"
+						className="btn btn-success"
+						value="Добавить"
+						onClick={this.handleClickAdd.bind(this)}/>
 				</div>
 			</div>
 		);
