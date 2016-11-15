@@ -11,7 +11,10 @@ export default class ListTodo extends React.Component {
 			<div className="container">
 				{
 					this.props.list.map(item => {
-						return <ItemTodo key={item.id} item={item} onDeleteTodoItem={this.props.onDeleteTodo}/>
+						return <ItemTodo key={item.id}
+							item={item}
+							onDeleteTodoItem={this.props.onDeleteTodo}
+							onCompleteTodoItem={this.props.onCompleteTodo}/>
 					})
 				}
 			</div>

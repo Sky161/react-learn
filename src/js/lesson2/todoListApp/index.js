@@ -53,6 +53,18 @@ export default class TodoApp extends React.Component {
 		this.setState({todoList: res});
 	}
 
+	completeTodo(todo) {
+		const item = todo.props.item;
+		const res = this.state.todoList.slice();
+		const index = res.findIndex(element => {
+			if(element.id == item.id) {
+				return item;
+			}
+		});
+		res[index].complete = !res[index].complete;
+		this.setState({todoList: res});
+	}
+
 	render() {
 		return(
 			<section className="todo-list">
@@ -62,7 +74,8 @@ export default class TodoApp extends React.Component {
 				<AddTodo onAddTodo={this.addTodo.bind(this)}/>
 				<ListTodo
 					list={this.state.todoList}
-					onDeleteTodo={this.deleteTodo.bind(this)}/>
+					onDeleteTodo={this.deleteTodo.bind(this)}
+					onCompleteTodo={this.completeTodo.bind(this)}/>
 			</section>
 		);
 	}
