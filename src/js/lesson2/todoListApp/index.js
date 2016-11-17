@@ -1,6 +1,7 @@
 import React from "react";
 import AddTodo from "./comp-add";
 import ListTodo from "./comp-list";
+import FilterTodo from "./comp-filter";
 import styles from "../../../sass/lesson2/todo.sass";
 
 export default class TodoApp extends React.Component {
@@ -63,6 +64,27 @@ export default class TodoApp extends React.Component {
 		this.setState({todoList: res});
 	}
 
+	filterTodo(key) {
+		let complete = "";
+		switch (key) {
+			case "all":
+				complete = "";
+				break;
+			case "ended":
+				complete = true;
+				break;
+			case "new":
+				complete = false;
+				break;
+		};
+		const res = this.state.todoList.filter(item => {
+			if(item.complete == complete) {
+				return item;
+			}
+		});
+		this.setState({todoList: res});
+	}
+
 	render() {
 		return(
 			<section className="todo-list">
@@ -70,6 +92,7 @@ export default class TodoApp extends React.Component {
 					<h1>To Do лист</h1>
 				</div>
 				<AddTodo onAddTodo={this.addTodo.bind(this)}/>
+				<FilterTodo onFilterTodo={this.filterTodo.bind(this)}/>
 				<ListTodo
 					list={this.state.todoList}
 					onDeleteTodo={this.deleteTodo.bind(this)}
