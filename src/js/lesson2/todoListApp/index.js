@@ -8,34 +8,21 @@ export default class TodoApp extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			todoList: [
-				{
-					id: "0",
-					text: "Тех Увы лун лия Бел Пой. Яркий Вот дым уст Лию дуб Рек живее Уже ему врозь.",
-					complete: false
-				},
-				{
-					id: "1",
-					text: "Тех Увы лун лия Бел Пой. Яркий Вот дым уст Лию дуб Рек живее Уже ему врозь.",
-					complete: false
-				},
-				{
-					id: "2",
-					text: "Тех Увы лун лия Бел Пой. Яркий Вот дым уст Лию дуб Рек живее Уже ему врозь.",
-					complete: false
-				},
-				{
-					id: "3",
-					text: "Тех Увы лун лия Бел Пой. Яркий Вот дым уст Лию дуб Рек живее Уже ему врозь.",
-					complete: false
-				},
-				{
-					id: "4",
-					text: "Тех Увы лун лия Бел Пой. Яркий Вот дым уст Лию дуб Рек живее Уже ему врозь.",
-					complete: false
-				}
-			]
+			todoList: [],
+			filterBy: "all"
 		}
+	}
+
+	componentWillMount(){
+		if(localStorage.todo) {
+			const res = JSON.parse(localStorage.todo);
+			this.setState({todoList: res});
+		}
+	}
+
+	componentDidUpdate() {
+		const res = JSON.stringify(this.state.todoList);
+		localStorage.setItem("todo", res);
 	}
 
 	addTodo(todo) {
@@ -47,7 +34,7 @@ export default class TodoApp extends React.Component {
 	deleteTodo(id) {
 		const res = this.state.todoList.filter(item => {
 			if(item.id !== id) {
-				return item;
+				return true;
 			}
 		});
 		this.setState({todoList: res});
@@ -65,10 +52,14 @@ export default class TodoApp extends React.Component {
 	}
 
 	filterTodo(key) {
-		let complete = "";
-		switch (key) {
+		this.setState({filterBy: key});
+	}
+
+	filterBy() {
+		let complete = null;
+		switch (this.state.filterBy) {
 			case "all":
-				complete = "";
+				complete = null;
 				break;
 			case "ended":
 				complete = true;
@@ -78,14 +69,15 @@ export default class TodoApp extends React.Component {
 				break;
 		};
 		const res = this.state.todoList.filter(item => {
-			if(item.complete == complete) {
-				return item;
+			if(item.complete == complete || complete === null) {
+				return true;
 			}
 		});
-		this.setState({todoList: res});
+		return res;
 	}
 
 	render() {
+		const filterList = this.filterBy();
 		return(
 			<section className="todo-list">
 				<div className="page-header container-fluid">
@@ -94,7 +86,7 @@ export default class TodoApp extends React.Component {
 				<AddTodo onAddTodo={this.addTodo.bind(this)}/>
 				<FilterTodo onFilterTodo={this.filterTodo.bind(this)}/>
 				<ListTodo
-					list={this.state.todoList}
+					list={filterList}
 					onDeleteTodo={this.deleteTodo.bind(this)}
 					onCompleteTodo={this.completeTodo.bind(this)}/>
 			</section>
