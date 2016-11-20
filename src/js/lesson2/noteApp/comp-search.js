@@ -5,9 +5,13 @@ export default class SearchNote extends React.Component{
 		super(props);
 	}
 
+	handleChangeSearch(e) {
+		this.props.searchHandlerParent(e.target.value);
+	}
+
 	render() {
 		return(
-			<input type="text" placeholder="Поиск" className="form-control" onChange={this.props.searchHandlerParent}/>
+			<input type="text" placeholder="Поиск" className="form-control" onChange={this.handleChangeSearch.bind(this)}/>
 		);
 	}
 }

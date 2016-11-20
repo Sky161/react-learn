@@ -7,7 +7,8 @@ export class NoteApp extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			note: []
+			note: [],
+			searchQuery: ""
 		}
 	}
 
@@ -18,15 +19,14 @@ export class NoteApp extends React.Component {
 		}
 	}
 
-	writeLocalStorage(arr) {
-		localStorage.setItem("notes", JSON.stringify(arr));
+	componentDidUpdate() {
+		localStorage.setItem("notes", JSON.stringify(this.state.note));
 	}
 
 	handelAddNote(newNote) {
 		let copyNote = this.state.note.slice();
 		copyNote.unshift(newNote);
 		this.setState({note: copyNote});
-		this.writeLocalStorage(copyNote);
 	}
 
 	handleDeleteNote(id) {
@@ -36,23 +36,28 @@ export class NoteApp extends React.Component {
 			}
 		});
 		this.setState({note: res});
-		this.writeLocalStorage(res);
 	}
 
 	handleSearchNote(q) {
-		const query = q.target.value.toLowerCase();
-		const res = this.localNotes.filter(item => {
-			const text = item.text.toLowerCase();
-			if(text.indexOf(query) != -1) {
-				return item;
-			}
-		});
+		this.setState({searchQuery: q});
+	}
 
-		this.setState({note: res});
+	getList() {
+		const query = this.state.searchQuery.toLowerCase();
+		if(query.length > 0) {
+			return this.state.note.filter(item => {
+				if(item.text.toLowerCase().indexOf(query) != -1) {
+					return true;
+				}
+			});
+		} else {
+			return this.state.note;
+		}
 	}
 
 
 	render() {
+		const list = this.getList();
 		return(
 			<section className="note-app">
 				<div className="page-header container-fluid">
@@ -60,7 +65,7 @@ export class NoteApp extends React.Component {
 				</div>
 				<NoteAdd onNoteAdd={this.handelAddNote.bind(this)}/>
 				<NoteList
-					note={this.state.note}
+					note={list}
 					onDeleteNote={this.handleDeleteNote.bind(this)}
 					onSearchNote={this.handleSearchNote.bind(this)}/>
 			</section>
