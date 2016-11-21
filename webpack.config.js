@@ -31,10 +31,14 @@ module.exports = {
 			},
 			{
 				test: /\.(eot|woff|woff2|ttf|svg|png|jpg)$/,
-				loader: 'file',
+				loader: "file",
 				query: {
 					name: "[path][name].[ext]"
 				}
+			},
+			{
+				test: /\.json$/,
+				loader: "json"
 			}
 		]
 	},
