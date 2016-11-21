@@ -27,7 +27,7 @@ module.exports = {
 			},
 			{
 				test: /\.sass$/,
-				loader: ExtractTextPlugin.extract(["css", "resolve-url", "sass?sourceMap"])
+				loader: ExtractTextPlugin.extract(["css?sourceMap", "resolve-url", "sass?sourceMap"])
 			},
 			{
 				test: /\.(eot|woff|woff2|ttf|svg|png|jpg)$/,
