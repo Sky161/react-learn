@@ -54,3 +54,7 @@ export default class NoteAdd extends React.Component {
 		);
 	}
 }
+
+NoteAdd.propTypes = {
+	onNoteAdd: React.PropTypes.func
+};

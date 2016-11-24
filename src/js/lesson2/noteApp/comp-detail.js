@@ -17,3 +17,10 @@ export default class Note extends React.Component {
 		);
 	}
 }
+
+Note.propTypes = {
+	color: React.PropTypes.string.isRequired,
+	deleteNote: React.PropTypes.func,
+	id: React.PropTypes.any.isRequired,
+	children: React.PropTypes.string.isRequired
+};

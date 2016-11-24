@@ -15,3 +15,7 @@ export default class SearchNote extends React.Component{
 		);
 	}
 }
+
+SearchNote.propTypes = {
+	searchHandlerParent: React.PropTypes.func
+};

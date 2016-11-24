@@ -3,7 +3,7 @@ import NoteAdd from "./comp-add";
 import NoteList from "./comp-list";
 import styles from "../../../sass/lesson2/note.sass";
 
-export class NoteApp extends React.Component {
+export default class NoteApp extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

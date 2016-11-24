@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-require("../sass/main.sass");
+import styles from "../sass/main.sass";
 
-import Articles from "./lesson3/articles/index";
+import NoteApp from "./lesson2/noteApp/index.js";
 
 ReactDOM.render(
 	<div>
-		<Articles />
+		<NoteApp />
 	</div>,
 	document.body.querySelector(".content")
 );

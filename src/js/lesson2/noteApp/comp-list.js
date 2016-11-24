@@ -44,3 +44,9 @@ export default class NoteList extends React.Component{
 		);
 	}
 }
+
+NoteList.propTypes = {
+	onSearchNote: React.PropTypes.func,
+	note: React.PropTypes.array.isRequired,
+	deleteNote: React.PropTypes.func
+};
