@@ -14,3 +14,10 @@ export default class DetailArticle extends React.Component{
 		);
 	}
 }
+
+DetailArticle.propTypes = {
+	article: React.PropTypes.shape({
+		name: React.PropTypes.string.isRequired,
+		text: React.PropTypes.string.isRequired
+	})
+};

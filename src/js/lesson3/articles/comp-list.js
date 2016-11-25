@@ -20,3 +20,11 @@ export default class ListArticle extends React.Component {
 		);
 	}
 }
+
+ListArticle.propTypes = {
+	articles: React.PropTypes.arrayOf(React.PropTypes.shape({
+		id: React.PropTypes.number.isRequired,
+		name: React.PropTypes.string.isRequired,
+		text: React.PropTypes.string.isRequired
+	}).isRequired).isRequired
+};

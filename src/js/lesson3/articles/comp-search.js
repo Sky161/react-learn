@@ -20,3 +20,7 @@ export default class SearchArticles extends React.Component {
 		);
 	}
 }
+
+SearchArticles.propTypes = {
+	onSearch: React.PropTypes.func
+};

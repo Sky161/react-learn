@@ -34,14 +34,13 @@ export default class Articles extends React.Component {
 
 	render() {
 		const listArticle = this.getList();
-		let template;
 		if(this.props.params.id) {
 			const article = listArticle.find(item => {
 				return item.id == this.props.params.id;
 			});
-			template = (<DetailArticle article={article}/>);
+			return(<DetailArticle article={article}/>);
 		} else {
-			template = (
+			return(
 				<section className="articles">
 					<div className="page-header container-fluid">
 						<h1>Список статей</h1>
@@ -53,6 +52,11 @@ export default class Articles extends React.Component {
 				</section>
 			);
 		}
-		return template;
 	}
 }
+
+Articles.propTypes = {
+	params: React.PropTypes.shape({
+		id: React.PropTypes.string
+	})
+};

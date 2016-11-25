@@ -15,3 +15,9 @@ export default class ItemArticle extends React.Component {
 		);
 	}
 }
+
+ItemArticle.propTypes = {
+	id: React.PropTypes.number.isRequired,
+	name: React.PropTypes.string.isRequired,
+	children: React.PropTypes.string.isRequired
+};
