@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, browserHistory } from "react-router";
 
 export default class ItemArticle extends React.Component {
 	constructor(props) {
@@ -8,7 +9,7 @@ export default class ItemArticle extends React.Component {
 	render() {
 		return(
 			<article>
-				<h2>{this.props.name}</h2>
+				<h2><Link to={`/articles/${this.props.id}`}>{this.props.name}</Link></h2>
 				<div className="text">{this.props.children}</div>
 			</article>
 		);

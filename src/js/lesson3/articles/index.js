@@ -2,6 +2,7 @@ import React from "react";
 import SearchArticles from "./comp-search";
 import data from "../articles.json";
 import ListArticle from "./comp-list";
+import DetailArticle from "./comp-detail.js";
 
 export default class Articles extends React.Component {
 	constructor(props) {
@@ -33,16 +34,25 @@ export default class Articles extends React.Component {
 
 	render() {
 		const listArticle = this.getList();
-		return(
-			<section className="articles">
-				<div className="page-header container-fluid">
-					<h1>Список статей</h1>
-				</div>
-				<div className="container">
-					<SearchArticles onSearch={this.searchHandle.bind(this)}/>
-					<ListArticle articles={listArticle}/>
-				</div>
-			</section>
-		);
+		let template;
+		if(this.props.params.id) {
+			const article = listArticle.find(item => {
+				return item.id == this.props.params.id;
+			});
+			template = (<DetailArticle article={article}/>);
+		} else {
+			template = (
+				<section className="articles">
+					<div className="page-header container-fluid">
+						<h1>Список статей</h1>
+					</div>
+					<div className="container">
+						<SearchArticles onSearch={this.searchHandle.bind(this)}/>
+						<ListArticle articles={listArticle}/>
+					</div>
+				</section>
+			);
+		}
+		return template;
 	}
 }

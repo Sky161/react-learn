@@ -12,7 +12,7 @@ export default class ListArticle extends React.Component {
 				{
 					this.props.articles.map(item => {
 						return(
-							<ItemArticle key={item.id} name={item.name}>{item.text}</ItemArticle>
+							<ItemArticle key={item.id} id={item.id} name={item.name}>{item.text}</ItemArticle>
 						);
 					})
 				}
