@@ -22,9 +22,7 @@ export default class Articles extends React.Component {
 		if(searchQuery.length > 0) {
 			return data.filter(item => {
 				const text = item.name.toLowerCase();
-				if(text.indexOf(searchQuery) != -1) {
-					return true;
-				}
+				return (text.indexOf(searchQuery) !== -1);
 			});
 		} else {
 			return data;
@@ -34,9 +32,7 @@ export default class Articles extends React.Component {
 	render() {
 		const listArticle = this.getList();
 		if(this.props.params.id) {
-			const article = listArticle.find(item => {
-				return item.id == this.props.params.id;
-			});
+			const article = listArticle.find(item => item.id == this.props.params.id);
 			return(<DetailArticle article={article}/>);
 		} else {
 			return(
