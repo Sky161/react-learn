@@ -8,7 +8,6 @@ export default class Articles extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			articles: data,
 			searchQuery: ""
 		};
 	}
@@ -21,14 +20,14 @@ export default class Articles extends React.Component {
 		const searchQuery = this.state.searchQuery.toLowerCase();
 
 		if(searchQuery.length > 0) {
-			return this.state.articles.filter(item => {
+			return data.filter(item => {
 				const text = item.name.toLowerCase();
 				if(text.indexOf(searchQuery) != -1) {
 					return true;
 				}
 			});
 		} else {
-			return this.state.articles;
+			return data;
 		}
 	}
 
@@ -58,5 +57,5 @@ export default class Articles extends React.Component {
 Articles.propTypes = {
 	params: React.PropTypes.shape({
 		id: React.PropTypes.string
-	})
+	}).isRequired
 };

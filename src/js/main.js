@@ -37,11 +37,11 @@ const NotFound = () => (
 ReactDOM.render(
 	<Router history={hashHistory}>
 		<Route path='/' component={App}>
-			<IndexRoute component={MainPage}></IndexRoute>
+			<IndexRoute component={MainPage} />
 			<Route path='articles' component={Articles}>
 				<Route path=':id' component={Articles} />
 			</Route>
-			<Route path='*' component={NotFound} status={404}></Route>
+			<Route path='*' component={NotFound} status={404} />
 		</Route>
 	</Router>,
 	document.body.querySelector(".content")
