@@ -6,8 +6,8 @@ module.exports = {
 	context: __dirname,
 	devtool: "sorce-map",
 	entry: {
-		app: "./src/js/main.js",
-		vendor: ["react", 'react-dom', 'masonry-layout']
+		app: "./src/js/main.jsx",
+		vendor: ["react", 'react-dom', 'react-router', 'react-tap-event-plugin']
 	},
 	output: {
 		publicPath: "/",
@@ -18,7 +18,7 @@ module.exports = {
 	module: {
 		loaders: [
 			{
-				test: /\.js$/,
+				test: /(\.jsx|\.js)$/,
 				exclude: /node_modules/,
 				loader: "babel",
 				query: {
@@ -55,6 +55,7 @@ module.exports = {
 		contentBase: "./app",
 		inline: true,
 		host: "localhost",
-		port: 3002
+		port: 3002,
+		historyApiFallback: true
 	}
 }
